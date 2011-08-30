@@ -16,6 +16,14 @@ nav ul ul li { float:none; }
 nav ul ul a { padding:5px 10px; border-left:none; border-right:none; font-size:14px; }  
 nav ul ul a:hover { background-color:#555; }  
 
+/* BODY */
+
+body {
+    padding: 10px;
+}
+
+
+/* AWESOME BUTTONS */
 a.awesome {
     background: #222 url(/images/alert-overlay.png) repeat-x;
     display: inline-block;
@@ -26,18 +34,49 @@ a.awesome {
     line-height: 1;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    -moz-box-shadow: 0 1px 3px #999;
-    -webkit-box-shadow: 0 1px 3px #999;
-    text-shadow: 0 -1px 1px #222;
-    border-bottom: 1px solid #222;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(0,0,0,0.25);
     position: relative;
     cursor: pointer;
+
 }
+
 
 a.awesome:active {
     position: relative;
     top: 1px;
 }
+
+/* Sizes ---------- */
+.small.awesome {
+    font-size: 11px;
+}
+.medium.awesome {
+    font-size: 13px;
+}
+.large.awesome {
+    font-size: 14px;
+    padding: 8px 14px 9px;
+}
+ 
+ /* Colors ---------- */
+ .blue.awesome {
+     background-color: #2daebf;
+ }
+ .red.awesome {
+     background-color: #e33100;
+ }
+ .magenta.awesome {
+     background-color: #a9014b;
+ }
+ .orange.awesome {
+     background-color: #ff5c00;
+ }
+ .yellow.awesome {
+     background-color: #ffb515;
+ }
 /* TABLES */
 table.tablesorter {
 	font-family:arial;
