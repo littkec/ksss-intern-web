@@ -1,0 +1,58 @@
+#a:active {
+#    position: relative;
+#    top: 1px;
+#}
+
+
+body {
+        margin: 0px;
+            padding: 0px;
+}
+div#buttonA {
+        margin-left: 50px;
+}
+div#buttonA ul {
+        margin: 0px;
+            padding: 0px;
+                font-family: Verdana, Arial, Helvetica, sans-serif;
+                    font-size: 12px;
+                        line-height: 30px;
+}
+div#buttonA li {
+        list-style-type: none;
+            height: 30px;
+                width: 125px;
+                    margin: 20px;
+                        text-align:center;
+}
+div#buttonA li a {
+        height: 100%;
+            width: 100%;
+                display: block;
+                    text-decoration: none;
+                        border-width: 6px;
+}
+div#buttonA li a:link {
+        color: #000000;
+            font-weight: bold;
+                background-color: #CCCCCC;
+                    border-style: outset;
+}
+div#buttonA li a:visited {
+        color: #000000;
+            font-weight: normal;
+                background-color: #CCCCCC;
+                    border-style: outset;
+}
+div#buttonA li a:hover {
+        font-weight: bold;
+            color: #FFFFFF;
+                background-color: #999999;
+                    border-style: outset;
+}
+div#buttonA li a:active {
+        font-weight: bold;
+            color: #FFFFFF;
+                background-color: #666666;
+                    border-style: inset;
+}
