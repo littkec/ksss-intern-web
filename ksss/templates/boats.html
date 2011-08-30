@@ -19,9 +19,13 @@
             <td> {{ boat.boat_type }}</td>
             <td> {{ boat.name }} </td>
             <td> {{ boat.location }} </td>
-            {% for damage in boat.reporteddamage_set.all %}
-                <td> {{ damage }} </td>
-            {% endfor %}
+            {% if boat.reporteddamage_set.all %}
+                <td>
+                {% for damage in boat.reporteddamage_set.all %}
+                    {{ damage }} {% if not forloop.last %} <b>|</b> {% endif %}
+                {% endfor %}
+                </td>
+            {% endif %}
         </tr>
     {% endfor %}
 </tbody>
