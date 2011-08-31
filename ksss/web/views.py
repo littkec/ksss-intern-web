@@ -20,10 +20,8 @@ def home(request):
     return render_to_response('home.html')
 
 def batar(request):
-    boat_type_list = ['Optimist', 'Motorbåt', 'If', 'Två-Krona'] 
     return render_to_response('boats.html', {
         'Boats': models.Boat.objects.all(), 
-        'boat_type_list': boat_type_list
         })
 
 def add_boat(request):
