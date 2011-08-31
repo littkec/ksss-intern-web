@@ -42,7 +42,7 @@ class ReportedDamage(models.Model):
     boat = models.ForeignKey(Boat)
     damage = models.ForeignKey(Damage)
     description = models.TextField()
-    actions_taken = models.TextField()
-    actions_needed = models.TextField()
+    actions_taken = models.TextField(blank=True)
+    actions_needed = models.TextField(blank=True)
     def __unicode__(self):
         return u'%s - %s' % (self.damage, self.description)
