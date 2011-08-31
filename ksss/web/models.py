@@ -3,44 +3,38 @@
 from django.db import models
 
 
-# class för att fordefiniera vissa typiska skador
 class Damage(models.Model):
     name = models.CharField(max_length=30)
     
     def __unicode__(self):
         return self.name
 
-# class för segelbåtar
+class Locations(models.Model):
+    name = models.CharField(max_length=30)
 
-LOCATIONS = (
-    (u'Långholmen', 'Långholmen'),
-    (u'Lökholmen', 'Lökholmen'),
-    (u'Klockis', 'Klockis'),
-    (u'Saltis', 'Saltis'),
-    (u'Djursholm', 'Djursholm'),
-    (u'Annan plats', 'Annan plats'),
-    )
+    def __unicode__(self):
+        return self.name
 
-BOAT_TYPES = (
-    (u'Motorbåt', 'Motorbåt'),
-    (u'If', 'If'),
-    (u'Optimist', 'Optimist'),
-    (u'Två-Krona', 'Två-Krona'),
-    )
+class BoatTypes(models.Model):
+    name = models.CharField(max_length=30)
 
-MOTORS = (
-    (u'Yamaha', 'Yamaha'),
-    (u'Honda', 'Honda'),
-    )
+    def __unicode__(self):
+        return self.name
+
+class Motors(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __unicode__(self):
+        return self.name
 
 class Boat(models.Model):
-    boat_type = models.CharField(choices=BOAT_TYPES, max_length=20)
+    boat_type = models.ForeignKey(BoatTypes)
     name = models.CharField(max_length=30)
-    motor = models.CharField(choices=MOTORS, max_length=30, blank=True)
+    motor = models.ForeignKey(Motors)
     motor_hp = models.CharField(max_length=3, blank=True)
     bought = models.CharField(max_length=4, blank=True)
     service = models.CharField(max_length=4, blank=True)
-    location = models.CharField(choices=LOCATIONS, max_length=20)
+    location = models.ForeignKey(Locations)
     def __unicode__(self):
         return self.name
 
@@ -48,6 +42,7 @@ class ReportedDamage(models.Model):
     boat = models.ForeignKey(Boat)
     damage = models.ForeignKey(Damage)
     description = models.TextField()
-    
+    actions_taken = models.TextField()
+    actions_needed = models.TextField()
     def __unicode__(self):
         return u'%s - %s' % (self.damage, self.description)
