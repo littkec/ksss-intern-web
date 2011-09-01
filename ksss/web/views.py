@@ -70,7 +70,7 @@ def delete_boat(request, boat_id):
 
     return HttpResponseRedirect('/new_damage/thanks/')
 
-def add_damage(request, dmg_id=None):
+def damage(request, dmg_id=None):
     if request.method == 'POST':
         if dmg_id:
             edit_dmg_id = models.ReportedDamage.objects.get(id=dmg_id)
