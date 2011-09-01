@@ -64,6 +64,12 @@ def edit_boat(request, boat_id):
         'form': form
     }, context_instance=RequestContext(request))
 
+def delete_boat(request, boat_id):
+    to_be_deleted = models.Boat.objects.get(id=boat_id)
+    to_be_deleted.delete()
+
+    return HttpResponseRedirect('/new_damage/thanks/')
+
 def add_damage(request):
     if request.method == 'POST':
         form = AddDamage(request.POST)

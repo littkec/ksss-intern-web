@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     (r'^new_damage/thanks/$', views.thanks),
     (r'^new_boat/$', views.add_boat),
     (r'^boats/edit/(\d+)/$', views.edit_boat),
+    (r'^boats/delete/(\d+)/$', views.delete_boat),
     # Examples:
     # url(r'^$', 'ksss.views.home', name='home'),
     # url(r'^ksss/', include('ksss.foo.urls')),
