@@ -19,7 +19,7 @@ def langholmen(request):
 def home(request):
     return render_to_response('home.html')
 
-def batar(request):
+def boats(request):
     return render_to_response('boats.html', {
         'Boats': models.Boat.objects.all(), 
         })
@@ -29,7 +29,7 @@ def add_boat(request):
         form = AddBoat(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/ny_skada/tack/')
+            return HttpResponseRedirect('/new_damage/thanks/')
     else:
         form = AddBoat()
     return render_to_response('add.html', {
@@ -42,7 +42,7 @@ def edit_boat(request, boat_id):
         form = EditBoat(request.POST, instance = edit_id)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/ny_skada/tack/')
+            return HttpResponseRedirect('/new_damage/thanks/')
     else:
         try:
             boat_id = int(boat_id)
@@ -69,7 +69,7 @@ def add_damage(request):
         form = AddDamage(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/ny_skada/tack/')
+            return HttpResponseRedirect('/new_damage/thanks/')
     else:
         form = AddDamage()
     return render_to_response('add.html', {
