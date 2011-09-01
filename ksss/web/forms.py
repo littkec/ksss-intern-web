@@ -11,3 +11,7 @@ class AddDamage(ModelForm):
 class AddBoat(ModelForm):
     class Meta:
         model = Boat
+
+class EditBoat(ModelForm):
+    class Meta:
+        model = Boat

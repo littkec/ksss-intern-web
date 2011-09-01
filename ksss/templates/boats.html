@@ -17,7 +17,7 @@
     {% for boat in Boats %}
         <tr>
             <td> {{ boat.boat_type }}</td>
-            <td> {{ boat.name }} </td>
+            <td><a href="/batar/edit/{{ boat.id }}">{{ boat.name }}</a> </td>
             <td> {{ boat.location }} </td>
             {% if boat.reporteddamage_set.all %}
                 <td>
