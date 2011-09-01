@@ -10,9 +10,6 @@ from ksss.web.forms import AddDamage, AddBoat, EditBoat
 def base(request):
     return render_to_response('base.html') 
 
-def hello(request):
-    return HttpResponse("Hello World!")
-
 def langholmen(request):
     return render_to_response('langholmen.html')
 
