@@ -50,6 +50,9 @@ a.awesome:active {
 }
 
 /* Sizes ---------- */
+.verysmall.awesome {
+    font-size: 8px;
+}
 .small.awesome {
     font-size: 11px;
 }
