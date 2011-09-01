@@ -24,6 +24,7 @@
                 <td>
                 {% for damage in boat.reporteddamage_set.all %}
                     <a href="/damage/edit/{{ damage.id }}">{{ damage }}</a>
+                    <a href="/damage/delete/{{ damage.id }}" title="Ta bort skada"><img src="/static/img/red_x.gif"></a>
                     {% if not forloop.last %} <b>|</b> {% endif %}
                 {% endfor %}
                 </td>

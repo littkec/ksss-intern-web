@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 from ksss.web import views 
+from ksss.web import models
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -13,9 +14,10 @@ urlpatterns = patterns('',
     (r'^boats/$', views.boats),
     (r'^boats/new/$', views.add_boat),
     (r'^boats/edit/(\d+)/$', views.edit_boat),
-    (r'^boats/delete/(\d+)/$', views.delete_boat),
+    (r'^boats/delete/(\d+)/$', views.delete, {'item': models.Boat}),
     (r'^damage/new/$', views.damage),
     (r'^damage/edit/(\d+)/$', views.damage),
+    (r'^damage/delete/(\d+)/$', views.delete, {'item': models.ReportedDamage}),
     (r'^new_damage/thanks/$', views.thanks),
     # Examples:
     # url(r'^$', 'ksss.views.home', name='home'),
