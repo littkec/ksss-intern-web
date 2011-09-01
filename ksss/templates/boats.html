@@ -23,7 +23,8 @@
             {% if boat.reporteddamage_set.all %}
                 <td>
                 {% for damage in boat.reporteddamage_set.all %}
-                    {{ damage }} {% if not forloop.last %} <b>|</b> {% endif %}
+                    <a href="/damage/edit/{{ damage.id }}">{{ damage }}</a>
+                    {% if not forloop.last %} <b>|</b> {% endif %}
                 {% endfor %}
                 </td>
             {% endif %}

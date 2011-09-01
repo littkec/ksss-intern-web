@@ -70,12 +70,30 @@ def delete_boat(request, boat_id):
 
     return HttpResponseRedirect('/new_damage/thanks/')
 
-def add_damage(request):
+def add_damage(request, dmg_id=None):
     if request.method == 'POST':
-        form = AddDamage(request.POST)
+        if dmg_id:
+            edit_dmg_id = models.ReportedDamage.objects.get(id=dmg_id)
+            form = AddDamage(request.POST, instance = edit_dmg_id)
+        else:
+            form = AddDamage(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/new_damage/thanks/')
+    elif dmg_id:
+        try:
+            dmg_id = int(dmg_id)
+        except ValueError:
+            raise Http404()
+
+        form = AddDamage(
+        initial = {
+            'boat': models.ReportedDamage.objects.get(id=dmg_id).boat,
+            'damage': models.ReportedDamage.objects.get(id=dmg_id).damage,
+            'description': models.ReportedDamage.objects.get(id=dmg_id).description,
+            'actions_taken': models.ReportedDamage.objects.get(id=dmg_id).actions_taken,
+            'actions_needed': models.ReportedDamage.objects.get(id=dmg_id).actions_needed
+        })
     else:
         form = AddDamage()
     return render_to_response('add.html', {
