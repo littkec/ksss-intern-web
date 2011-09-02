@@ -7,7 +7,6 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^hello/$', views.hello),
     (r'^home/$', views.home),
     (r'^langholmen/$', views.langholmen),
     (r'^base/$', views.base),
