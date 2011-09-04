@@ -7,19 +7,19 @@
 <table id="myTable" class="tablesorter">
 <thead>
     <tr>
-        <th><b> Typ </b></th>
-        <th><b> Namn </b> </th>
-        <th><b> Plats </b> </th>
+        <th><b> Namn </b></th>
+        <th><b> Typ </b> </th>
+        <th><b> Hemmahamn </b> </th>
         <th><b> Skador </b></th>
     </tr>
 </thead>
 <tbody>
     {% for boat in Boats %}
         <tr>
-            <td> {{ boat.boat_type }}</td>
             <td><a href="/boats/edit/{{ boat.id }}" title="Redigera båt">{{ boat.name }}</a>
                 <a href="/boats/delete/{{ boat.id }}" title="Ta bort båt"><img src="/static/img/red_x.gif"></a></td>
-            <td> {{ boat.location }} </td>
+            <td> {{ boat.boat_type }}</td>
+            <td> {{ boat.home_port }} </td>
             {% if boat.reporteddamage_set.all %}
                 <td>
                 {% for damage in boat.reporteddamage_set.all %}

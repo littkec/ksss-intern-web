@@ -28,13 +28,15 @@ class Motors(models.Model):
         return self.name
 
 class Boat(models.Model):
-    boat_type = models.ForeignKey(BoatTypes)
     name = models.CharField(max_length=30)
+    boat_type = models.ForeignKey(BoatTypes)
     motor = models.ForeignKey(Motors)
     motor_hp = models.CharField(max_length=3, blank=True)
     bought = models.CharField(max_length=4, blank=True)
     service = models.CharField(max_length=4, blank=True)
-    location = models.ForeignKey(Locations)
+    current_location = models.ForeignKey(Locations, related_name="current_location")
+    home_port = models.ForeignKey(Locations, related_name="home_port")
+    notes = models.TextField(blank=True)
     def __unicode__(self):
         return self.name
 
@@ -46,3 +48,10 @@ class ReportedDamage(models.Model):
     actions_needed = models.TextField(blank=True)
     def __unicode__(self):
         return u'%s - %s' % (self.damage, self.description)
+
+class News(models.Model):
+    title = models.CharField(max_length=120)
+    content = models.TextField()
+
+    def __unicode__(self):
+        return self.name
