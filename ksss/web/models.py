@@ -52,6 +52,8 @@ class ReportedDamage(models.Model):
 class News(models.Model):
     title = models.CharField(max_length=120)
     content = models.TextField()
+    posted = models.DateField()
+    author = models.CharField(max_length=30)
 
     def __unicode__(self):
-        return self.name
+        return self.title

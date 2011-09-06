@@ -14,7 +14,9 @@ def langholmen(request):
     return render_to_response('langholmen.html')
 
 def home(request):
-    return render_to_response('home.html')
+    return render_to_response('home.html', {
+        'news': models.News.objects.order_by('-posted')[0:3]
+    }, context_instance=RequestContext(request))
 
 def boats(request):
     return render_to_response('boats.html', {

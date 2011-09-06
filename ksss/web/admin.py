@@ -8,4 +8,4 @@ admin.site.register(BoatTypes)
 admin.site.register(Motors)
 admin.site.register(Boat)
 admin.site.register(ReportedDamage)
-
+admin.site.register(News)
