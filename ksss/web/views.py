@@ -1,11 +1,12 @@
 # Create your views here.
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from ksss.web import models
-from ksss.web.forms import AddDamage, AddBoat, EditBoat
+from ksss.web.forms import AddDamage, AddBoat, EditBoat, News
+
 
 def base(request):
     return render_to_response('base.html') 
@@ -15,8 +16,29 @@ def langholmen(request):
 
 def home(request):
     return render_to_response('home.html', {
-        'news': models.News.objects.order_by('-posted')[0:3]
+        'news': models.News.objects.order_by('-posted')[0:4]
     }, context_instance=RequestContext(request))
+
+def news(request, news_id=None):
+    if request.method == 'POST':
+        if news_id:
+            to_edit = models.News.objects.get(id=news_id)
+            form = News(request.POST, instance = to_edit)
+        else: 
+            form = News(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/home/')
+
+    elif news_id:
+        to_edit = get_object_or_404(models.News, id=news_id)
+        form = News(instance = to_edit)
+    else:
+        form = News()
+    return render_to_response('add.html', {
+        'form': form
+    }, context_instance=RequestContext(request))
+
 
 def boats(request):
     return render_to_response('boats.html', {

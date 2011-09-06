@@ -14,14 +14,24 @@
             </section>
 
             <footer>
-                Posted <datetime time="{{ newsitem.posted|date:"c" }}">
-                {{ newsitem.posted|date:"c" }}</datetime>
+                Posted on
+                
+                <datetime time="{{ newsitem.posted|date:"c" }}">
+
+                <span>{{ newsitem.posted|date:"c" }}</span>
+
+                </datetime>
                 By {{ newsitem.author }}
+                    <div id="edit_news">
+                        <a href="/home/edit/{{ newsitem.id }}" title="Ändra nyhet" class="awesome medium grey">Edit</a>
+                    </div>
             </footer>
 
         </article>
 
     {% endfor %}
+
+    <a href="/home/new/" title="Ny nyhet" class="awesome medium grey">Ny nyhet</a>
 </div>
             
 
