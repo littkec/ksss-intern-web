@@ -6,9 +6,9 @@ nav {
     z-index: 1;
     display:block; 
     margin:0 auto 20px; 
-    border:1px solid #222; 
+    border:1px solid #fff; 
     position:relative; 
-    background-color:#6a6a6a; 
+    background-color:#bbb; 
     font:16px Tahoma, Sans-serif;
 }  
 nav ul { 
@@ -30,8 +30,8 @@ nav ul:after {
 nav li a { 
     display:block; 
     padding:10px 20px; 
-    border-left:1px solid #999; 
-    border-right:1px solid #222; color:#eee; text-decoration:none; 
+    border-left:1px solid #fff; 
+    border-right:1px solid #fff; color:#eee; text-decoration:none; 
 }  
 nav li a:focus { 
     outline:none; 
@@ -53,7 +53,7 @@ nav ul ul {
     width:100%; 
     position:absolute; 
     left:0; 
-    background:#6a6a6a; 
+    background:#bbb; 
 }  
 nav ul ul li { 
     float:none; 
@@ -65,7 +65,7 @@ nav ul ul a {
     font-size:14px; 
     }  
 nav ul ul a:hover { 
-    background-color:#555; 
+    background-color:#888; 
     }  
 
 /* BODY */
@@ -121,19 +121,22 @@ a.awesome:active {
  /* Colors ---------- */
  .blue.awesome {
      background-color: #2daebf;
- }
+}
  .red.awesome {
      background-color: #e33100;
- }
+}
  .magenta.awesome {
      background-color: #a9014b;
- }
+}
  .orange.awesome {
      background-color: #ff5c00;
- }
+}
  .yellow.awesome {
      background-color: #ffb515;
- }
+}
+ .grey.awesome {
+     background-color: #bbb;
+}
 
 /* TABLES */
 /* Boat presentation */
@@ -227,54 +230,56 @@ article:after {
     left: auto;
 }        
 
-article footer
-{
-        text-align: center;
-            width: auto;
+article footer {
+    text-align: center;
+    width: auto;
 }
 
-article footer span
-{
-      padding: 0 10px 0 12px;
-        margin: 0 0 0 12px;
-          background: #bbb;
-            color: #fff;
-              font: bold 12px/24px arial, helvetica;
-                display: inline-block;
-                  position: relative;
-                    text-shadow: 0 1px 0 #999;
-                      -moz-border-radius: 0 4px 4px 0;
-                        border-radius: 0 4px 4px 0;
-                          -moz-box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
-                            -webkit-box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
-                              box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
+article footer span {
+    padding: 0 10px 0 12px;
+    margin: 0 0 0 12px;
+    background: #bbb;
+    color: #fff;
+    font: bold 12px/24px arial, helvetica;
+    display: inline-block;
+    position: relative;
+    text-shadow: 0 1px 0 #999;
+    -moz-border-radius: 0 4px 4px 0;
+    border-radius: 0 4px 4px 0;
+    -moz-box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
+    -webkit-box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
+    box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
 }
 
-article footer span:before
-{
-      content: "";
-        position: absolute;
-          top: 0;
-            left: -12px;
-              width: 0;
-                height: 0;
-                  border-color: transparent #bbb transparent transparent;
-                    border-style: solid;
-                      border-width: 12px 12px 12px 0;
+article footer span:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -12px;
+    width: 0;
+    height: 0;
+    border-color: transparent #bbb transparent transparent;
+    border-style: solid;
+    border-width: 12px 12px 12px 0;
 }
 
-article footer span:after
-{
-      content: "";
-        position: absolute;
-          top: 10px;
-            left: 0;
-              width: 4px;
-                height: 4px;
-                  -moz-border-radius: 2px;
-                    border-radius: 2px;
-                      background: #fff;
-                        -moz-box-shadow: -1px -1px 2px #777;
-                          -webkit-box-shadow: -1px -1px 2px #777;
-                            box-shadow: -1px -1px 2px #777;
+article footer span:after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background: #fff;
+    -moz-box-shadow: -1px -1px 2px #777;
+    -webkit-box-shadow: -1px -1px 2px #777;
+    box-shadow: -1px -1px 2px #777;
 }      
+
+#edit_news {
+   position: absolute;
+   right: 8px;
+   bottom: 20px;
+}
