@@ -14,7 +14,8 @@
             </section>
 
             <footer>
-                Posted {{ newsitem.posted }}
+                Posted <datetime time="{{ newsitem.posted|date:"c" }}">
+                {{ newsitem.posted|date:"c" }}</datetime>
                 By {{ newsitem.author }}
             </footer>
 
