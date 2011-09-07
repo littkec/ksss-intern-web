@@ -3,12 +3,6 @@
 
 {% block content %}
 
-{% if form.errors %}
-    <p style="color: red;">
-        {{ form.errors }}
-    </p>
-{% endif %}
-
 <form action="" method="post">
 {% csrf_token %}
     <table>
