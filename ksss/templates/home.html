@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block page_title %}Hem{% endblock %}
-
+{% load markup %}
 {% block content %}
 
 <div id="content">
@@ -10,7 +10,7 @@
 
             <section> 
                 <h1>{{ newsitem.title }}</h1>
-                <p> {{ newsitem.content }}</p>
+                <p> {{ newsitem.content|markdown }}</p>
             </section>
 
             <footer>
