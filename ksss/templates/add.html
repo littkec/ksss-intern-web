@@ -3,13 +3,62 @@
 
 {% block content %}
 
-<form action="" method="post">
-{% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit"  value="Submit">
-</form>
+    <form action="" method="post">
+    {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit"  value="Submit">
+    </form>
 
+    <article class="add">
+        <section>
+            <h1>Formatering</h1>
+            <p>För att formatera din text, använd följande:</p>
+            <table>
+                <tr>
+                    <td><span class="tag">&lt;p&gt;</span></td><td><span class="tag">nytt stycke</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tag">&lt;br&gt;</span></td><td><span class="tag">ny rad</span></td>  
+                </tr>
+                <tr>
+                    <td><span class="tag">&lt;h1&gt;</span></td><td><span class="tag">börja rubrik</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tag">&lt;/h1&gt;</span></td><td><span class="tag">avsluta rubrik</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tag">&lt;*&gt;</span></td><td><span class="tag">punkt i punktlista</span></td>
+                </tr>
+            </table>
+            <p id="helpbox">Den här texten:</p>
 
+            <textarea readonly="true" cols="30" rows="9">
+<h1>Viktig nyhet</h1>
+<p>Bojen är kaputt.
+Vi måste vidta dessa åtgärder:
+<*>Köp en boj
+<*>Fäst bojen
+
+<p>Det var allt.<br>
+Tack och hej!
+            </textarea>
+            <p id="helpbox">Kommer se ut såhär:</p>
+                
+                <section id="helpbox">
+                    <h1>Viktig nyhet</h1>
+                    <p>Bojen är kaputt.
+                    Vi måste vidta dessa åtgärder:
+                    <ul>
+                        <li>Köp en boj</li>
+                        <li>Fäst bojen</li>
+                    </ul>
+
+                    <p>Det var allt.<br>
+                    Tack och hej!
+                </section> 
+
+        </section>
+    </article>
 {% endblock %}

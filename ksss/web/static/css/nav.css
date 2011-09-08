@@ -200,6 +200,17 @@ article {
     border-radius:5px;
 }
 
+#helpbox {
+    text-align: left;
+}
+
+article.add {
+    position: absolute;
+    top: 84px;
+    left: 500px;
+}
+
+
 article:before, article:after {
     z-index: -1;
     position: absolute;
@@ -282,4 +293,74 @@ article footer span:after {
    position: absolute;
    right: 8px;
    bottom: 20px;
+}
+
+/* Boat Presentation */
+
+span.tag {
+    padding: 0 12px 0 12px;
+    margin: 0 0 5px 10px;
+    background: #bbb;
+    color: #fff;
+    font: bold 12px/24px arial, helvetica;
+    display: inline-block;
+    float: left;
+    text-shadow: 0 1px 0 #999;
+    -moz-border-radius: 4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
+    -moz-box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
+    -webkit-box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
+    box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
+}
+
+/*
+article table tr td.left {
+    right: 15px;
+}
+article table tr td {
+    padding: 0 12px 0 12px;
+    margin: 0 0 5px 10px;
+    background: #bbb;
+    color: #fff;
+    font: bold 12px/24px arial, helvetica;
+    display: inline-block;
+    position: relative;
+    text-shadow: 0 1px 0 #999;
+    -moz-border-radius: 4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
+    -moz-box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
+    -webkit-box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
+    box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
+} */
+td.first {
+    padding: 0 0 0 12px;
+    margin: 0 0 5px 10px;
+    background: #bbb;
+    color: #fff;
+    font: bold 12px/24px arial, helvetica;
+    display: inline-block;
+    vertical-align: top;
+    text-shadow: 0 1px 0 #999;
+    -moz-border-radius: 4px 0 0 4px;
+    border-radius: 4px 0 0 4px;
+    -moz-box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
+    -webkit-box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
+    box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
+}
+
+td.second {
+    padding: 0 10px 0 12px;
+    margin: 0 0 5px 0px;
+    width: 120px;
+    background: #bbb;
+    color: #fff;
+    font: bold 12px/24px arial, helvetica;
+    display: inline-block;
+    vertical-align: top;
+    text-shadow: 0 1px 0 #999;
+    -moz-border-radius: 0 4px 4px 0;
+    border-radius: 0 4px 4px 0;
+    -moz-box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
+    -webkit-box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
+    box-shadow: 0 1px 0 #fff, 0 1px 0 #999 inset;
 }
