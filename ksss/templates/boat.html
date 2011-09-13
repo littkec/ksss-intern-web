@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block page_title %}{{ boat.id }}{% endblock %}
+{% block page_head %}
+{% endblock %}
+{% block content %}
+
+<div id="content">
+    <h2>Allmänt</h2>
+    <article>
+        <table>
+            <tbody>
+                <tr>
+                    <td><span class="tag">Namn: {{ boat.name }}</span></td>
+                    <td><span class="tag">Typ: {{ boat.boat_type }}</span></td>
+                    <td><span class="tag">Motor: {{ boat.motor }}</span></td>
+                    {% if boat.motor %}
+                    <td><span class="tag">Motorstyrka: {{ boat.motor_hp }}</span></td> 
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td><span class="tag">Köpt: {{ boat.bought }}</span></td>
+                    <td><span class="tag">Service: {{ boat.service }} </span></td>
+                    <td><span class="tag">Nuvarande hamn: {{ boat.current_location }}</span></td>
+                    <td><span class="tag">Hemmahamn: {{ boat.home_port }}</span></td>
+                </tr>
+                    <td colspan="4"><span class="tag">Anteckningar: {{ boat.notes }}</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="edit_boat">
+            <a href="/boats/delete/{{ boat.id }}" title="Ta bort båt"><img src="/static/img/red_x.gif"></a></td>
+            <a href="/boats/edit/{{ boat.id }}" title="Redigera båt" class="awesome small blue">Edit</a>
+        </div>
+    </article>
+    {% if current_damages %}
+    <h2>Skador</h2>
+        {% for damage in boat.reporteddamage_set.all %}
+            {% if not damage.repaired %}
+                <article>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><span class="tag">Skada: {{ damage.damage }}</span></td>
+                                <td><span class="tag">Beskrivning: {{ damage.description }}</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="tag">Vidtagna åtgärder: {{ damage.actions_taken }}</span></td>
+                                <td><span class="tag">Nödvändiga åtgärder: {{ damage.actions_needed }}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="edit_boat">
+                        <a href="/damage/delete/{{ damage.id }}" title="Ta bort skada"><img src="/static/img/red_x.gif"></a>
+                        <a href="/damage/edit/{{ damage.id }}" title="Redigera skada" class="awesome small blue">Edit</a>
+                    </div>
+                </article>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% if repaired_damages %}
+    <h2>Reparerade Skador</h2>
+        {% for damage in boat.reporteddamage_set.all %}
+            {% if damage.repaired %}
+                <article>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><span class="tag">Skada: {{ damage.damage }}</span></td>
+                                <td><span class="tag">Beskrivning: {{ damage.description }}</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="tag">Vidtagna åtgärder: {{ damage.actions_taken }}</span></td>
+                                <td><span class="tag">Nödvändiga åtgärder: {{ damage.actions_needed }}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="edit_boat">
+                        <a href="/damage/delete/{{ damage.id }}" title="Ta bort skada"><img src="/static/img/red_x.gif"></a>
+                        <a href="/damage/edit/{{ damage.id }}" title="Redigera skada" class="awesome small blue">Edit</a>
+                    </div>
+                </article>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+</div>
+
+
+
+
+
+{% endblock %}

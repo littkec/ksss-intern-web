@@ -16,16 +16,17 @@
 <tbody>
     {% for boat in Boats %}
         <tr>
-            <td><a href="/boats/edit/{{ boat.id }}" title="Redigera båt">{{ boat.name }}</a>
+            <td><a href="/boats/{{ boat.id }}" title="Visa båt">{{ boat.name }}</a>
                 <a href="/boats/delete/{{ boat.id }}" title="Ta bort båt"><img src="/static/img/red_x.gif"></a></td>
             <td> {{ boat.boat_type }}</td>
             <td> {{ boat.home_port }} </td>
             {% if boat.reporteddamage_set.all %}
                 <td>
                 {% for damage in boat.reporteddamage_set.all %}
-                    <a href="/damage/edit/{{ damage.id }}" title="Redigera skada">{{ damage }}</a>
-                    <a href="/damage/delete/{{ damage.id }}" title="Ta bort skada"><img src="/static/img/red_x.gif"></a>
-                    {% if not forloop.last %} <b>|</b> {% endif %}
+                    {% if not damage.repaired %}
+                        <a href="/damage/edit/{{ damage.id }}" title="Redigera skada">{{ damage }}</a>
+                        <a href="/damage/delete/{{ damage.id }}" title="Ta bort skada"><img src="/static/img/red_x.gif"></a>
+                    {% endif %}
                 {% endfor %}
                 </td>
             {% endif %}

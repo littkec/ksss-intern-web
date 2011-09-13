@@ -46,6 +46,7 @@ class ReportedDamage(models.Model):
     description = models.TextField()
     actions_taken = models.TextField(blank=True)
     actions_needed = models.TextField(blank=True)
+    repaired = models.BooleanField()
     def __unicode__(self):
         return u'%s - %s' % (self.damage, self.description)
 

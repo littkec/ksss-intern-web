@@ -6,19 +6,23 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from ksss.web import models
 from ksss.web.forms import AddDamage, AddBoat, EditBoat, News
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def base(request):
     return render_to_response('base.html') 
 
+@login_required
 def langholmen(request):
     return render_to_response('langholmen.html')
 
+@login_required
 def home(request):
     return render_to_response('home.html', {
-        'news': models.News.objects.order_by('-posted')[0:4]
+        'latest_news': models.News.objects.order_by('-posted')[0:4]
     }, context_instance=RequestContext(request))
 
+@login_required
 def news(request, news_id=None):
     if request.method == 'POST':
         if news_id:
@@ -39,12 +43,32 @@ def news(request, news_id=None):
         'form': form
     }, context_instance=RequestContext(request))
 
+@login_required
+def boat(request, boat_id):
+    boat = models.Boat.objects.get(id=boat_id)
 
+    current_damages = False
+    repaired_damages = False
+
+    for damage in boat.reporteddamage_set.all():
+        if damage.repaired == False:
+            current_damages = True
+        if damage.repaired == True:
+            repaired_damages = True
+
+    return render_to_response('boat.html', {
+        'boat': boat,
+        'current_damages': current_damages,
+        'repaired_damages': repaired_damages
+    }, context_instance=RequestContext(request))
+
+@login_required
 def boats(request):
     return render_to_response('boats.html', {
         'Boats': models.Boat.objects.all(), 
         })
 
+@login_required
 def add_boat(request):
     if request.method == 'POST':
         form = AddBoat(request.POST)
@@ -57,6 +81,7 @@ def add_boat(request):
         'form': form
     }, context_instance=RequestContext(request))
 
+@login_required
 def edit_boat(request, boat_id):
     to_edit = models.Boat.objects.get(id=boat_id)
     if request.method == 'POST':
@@ -75,12 +100,14 @@ def edit_boat(request, boat_id):
         'form': form
     }, context_instance=RequestContext(request))
 
+@login_required
 def delete(request, id, item):
     to_be_deleted = item.objects.get(id=id)
     to_be_deleted.delete()
 
     return HttpResponseRedirect('/new_damage/thanks/')
 
+@login_required
 def damage(request, dmg_id=None):
     if request.method == 'POST':
         if dmg_id:
@@ -106,5 +133,6 @@ def damage(request, dmg_id=None):
         'form': form
     }, context_instance=RequestContext(request))
 
+@login_required
 def thanks(request):
     return render_to_response('thanks.html')

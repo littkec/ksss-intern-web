@@ -1,8 +1,8 @@
 from django.conf.urls.defaults import patterns, include, url
 from ksss.web import views 
 from ksss.web import models
+from django.contrib.auth.views import login, logout
 
-# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     (r'^home/edit/(\d+)$', views.news),
     (r'^langholmen/$', views.langholmen),
     (r'^base/$', views.base),
+    (r'^boats/(\d+)/$', views.boat),
     (r'^boats/$', views.boats),
     (r'^boats/new/$', views.add_boat),
     (r'^boats/edit/(\d+)/$', views.edit_boat),
@@ -20,6 +21,8 @@ urlpatterns = patterns('',
     (r'^damage/edit/(\d+)/$', views.damage),
     (r'^damage/delete/(\d+)/$', views.delete, {'item': models.ReportedDamage}),
     (r'^new_damage/thanks/$', views.thanks),
+    (r'^accounts/login/$', login),
+    (r'^accounts/logout/$', logout),
     # Examples:
     # url(r'^$', 'ksss.views.home', name='home'),
     # url(r'^ksss/', include('ksss.foo.urls')),
