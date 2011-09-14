@@ -4,20 +4,35 @@
 {% block content %}
 
 <div id="content">
-{% comment %}
-    <aside>
-        <article> 
-            
 
+    <aside>
+        <article id="newsmenu">
+            <section>
+                <h3>Navigera nyheter</h3>
+                    {% for newsitem in latest_news %}
+
+                        {% ifchanged %}
+                        <h4>{{ newsitem.posted|date:"F" }}</h4>
+                        {% endifchanged %}
+
+                    <a href="/news/{{ newsitem.id }}/">{{ newsitem.title }}</a>
+                    
+                        {% if not forloop.last %}<br>{% endif %}
+                    {% endfor %}
+            </section>
+        </article>
     </aside>
-{% endcomment %}
+
     {% for newsitem in latest_news %}
 
         <article>
 
             <section> 
-                <h1>{{ newsitem.title }}</h1>
-                <p> {{ newsitem.content|markdown }}</p>
+                <h1><a href="/news/{{ newsitem.id }}/">{{ newsitem.title }}</a></h1>
+                <p> {{ newsitem.content|markdown|slice:":300" }}
+                {% if newsitem.content|length > 300 %}
+                <p id="read_more"><em>Klicka på rubriken för att läsa vidare</em></p>
+                {% endif %}
             </section>
 
             <footer>

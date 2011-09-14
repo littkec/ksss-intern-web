@@ -23,7 +23,7 @@ def home(request):
     }, context_instance=RequestContext(request))
 
 @login_required
-def news(request, news_id=None):
+def edit_news(request, news_id=None):
     if request.method == 'POST':
         if news_id:
             to_edit = models.News.objects.get(id=news_id)
@@ -41,6 +41,15 @@ def news(request, news_id=None):
         form = News()
     return render_to_response('add.html', {
         'form': form
+    }, context_instance=RequestContext(request))
+
+@login_required
+def one_news(request, news_id):
+    newsitem = models.News.objects.get(id=news_id)
+    latest_news = models.News.objects.order_by('-posted')[0:4]
+    return render_to_response('news.html', {
+        'newsitem': newsitem,
+        'latest_news': latest_news
     }, context_instance=RequestContext(request))
 
 @login_required

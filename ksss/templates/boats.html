@@ -25,7 +25,6 @@
                 {% for damage in boat.reporteddamage_set.all %}
                     {% if not damage.repaired %}
                         <a href="/damage/edit/{{ damage.id }}" title="Redigera skada">{{ damage }}</a>
-                        <a href="/damage/delete/{{ damage.id }}" title="Ta bort skada"><img src="/static/img/red_x.gif"></a>
                     {% endif %}
                 {% endfor %}
                 </td>

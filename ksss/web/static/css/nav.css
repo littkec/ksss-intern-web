@@ -183,13 +183,14 @@ background-color: #8dbdd8;
 
 #content {
     float: left;
-    width: 690px;
+    width: 890px;
 }
 
 article {
     position: relative;
     padding: 20px;
     margin: 0 0 20px 0;
+    width: 650px;
     text-align: center;
     background: #fff;
     -moz-box-shadow: 0 1px 1px #999;
@@ -208,6 +209,7 @@ article.add {
     position: absolute;
     top: 84px;
     left: 500px;
+    width: 260px;
 }
 
 
@@ -294,6 +296,22 @@ article footer span:after {
    right: 8px;
    bottom: 20px;
 }
+
+#read_more {
+    font-size: smaller;
+}
+
+aside {
+    float: right;
+    width: 180px;
+    right: 0px;
+}
+
+#newsmenu {
+    text-align: left; 
+    width: 180px;
+}
+
 
 /* Boat Presentation */
 

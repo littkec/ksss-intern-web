@@ -8,8 +8,9 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^home/$', views.home),
-    (r'^home/new/$', views.news),
-    (r'^home/edit/(\d+)$', views.news),
+    (r'^home/new/$', views.edit_news),
+    (r'^home/edit/(\d+)$', views.edit_news),
+    (r'^news/(\d+)/$', views.one_news),
     (r'^langholmen/$', views.langholmen),
     (r'^base/$', views.base),
     (r'^boats/(\d+)/$', views.boat),
