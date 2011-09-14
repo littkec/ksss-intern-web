@@ -291,6 +291,11 @@ article footer span:after {
     box-shadow: -1px -1px 2px #777;
 }      
 
+#author {
+    position: relative;
+
+}
+
 #edit_news {
    position: absolute;
    right: 8px;

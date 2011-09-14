@@ -23,7 +23,7 @@
         </article>
     </aside>
 
-    {% for newsitem in latest_news %}
+    {% for newsitem in latest_news|slice:":4" %}
 
         <article>
 

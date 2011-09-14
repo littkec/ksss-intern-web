@@ -19,7 +19,7 @@ def langholmen(request):
 @login_required
 def home(request):
     return render_to_response('home.html', {
-        'latest_news': models.News.objects.order_by('-posted')[0:4]
+        'latest_news': models.News.objects.order_by('-posted')
     }, context_instance=RequestContext(request))
 
 @login_required
