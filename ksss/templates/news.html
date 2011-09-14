@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block page_title %}{{ newsitem.id }}{% endblock %}
+{% load markup %}
+{% block content %}
+
+<div id="content">
+
+    <aside>
+        <article id="newsmenu">
+            <section>
+                <h3>Navigera nyheter</h3>
+                    {% for newsitem in latest_news %}
+
+                        {% ifchanged %}
+                        <h4>{{ newsitem.posted|date:"F" }}</h4>
+                        {% endifchanged %}
+
+                    <a href="/news/{{ newsitem.id }}/">{{ newsitem.title }}</a>
+                    
+                        {% if not forloop.last %}<br>{% endif %}
+                    {% endfor %}
+            </section>
+        </article>
+    </aside>
+
+        <article>
+
+            <section> 
+                <h1><a href="/news/{{ newsitem.id }}/">{{ newsitem.title }}</a></h1>
+                <p> {{ newsitem.content|markdown }}
+            </section>
+
+            <footer>
+                Posted on
+                
+                <datetime time="{{ newsitem.posted|date:"c" }}">
+
+                <span>{{ newsitem.posted|date:"c" }}</span>
+
+                </datetime>
+                By {{ newsitem.author }}
+                    <div id="edit_news">
+                        <a href="/home/edit/{{ newsitem.id }}" title="Ändra nyhet" class="awesome medium grey">Edit</a>
+                    </div>
+            </footer>
+
+        </article>
+
+</div>
+
+{% endblock %}
+
