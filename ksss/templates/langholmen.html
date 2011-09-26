@@ -1,6 +1,22 @@
 {% extends "base.html" %}
+{% block page_title %}{{ camp|capfirst }}{% endblock %}
 {% block content %}
 
-<p> jaaa, massa spännande info om långholmen
-
+<h1>{{ camp|capfirst }}</h1>
+<aside>
+    <article>
+        <section>
+            <ul>
+                <li>Inventarier<li>
+                    <ul>
+                        {% for item in inventorytype %}
+                        <li><a href="/inventory/{{ camp }}/item }}">{{ item }}</a></li>
+                    </ul>
+                <li>Byggnader</li>
+                <li>Läger</li>
+            </ul>
+        </section>
+    </article>
+</aside>
+                
 {% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'camps.html' %}
+
+{% block sub_content %}
+
+
+<table id="myTable" class="tablesorter">
+<thead>
+    <tr>
+        <th><b> Namn </b></th>
+        <th><b> Nuvarande antal </b> </th>
+        <th><b> Så många ska finnas </b> </th>
+    </tr>
+</thead>
+<tbody>
+    {% for item in inventory %}
+        {% if item.type == current_inventorytype and item.camp|lower == camp or current_inventorytype == 0 %}
+        <tr>
+            <td><a href="/inventory/edit/{{ item.id }}/">{{ item.name }}</a></td>
+            <td> {{ item.current_amount }} </td>
+            <td> {{ item.amount }} </td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+</tbody>
+</table>
+
+<a href="/inventory/new/" title="Ny inventarie" class="awesome medium blue">Ny inventarie</a>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+</script>
+
+{% endblock %}
+
+{% block sub_footer %}
+<script type="text/javascript" src="/static/js/jquery.tablesorter.min.js"></script> 
+{% endblock %}

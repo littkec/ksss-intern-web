@@ -2,7 +2,7 @@
 
 from django import forms
 from django.forms import ModelForm
-from ksss.web.models import ReportedDamage, Boat, News
+from ksss.web.models import *
 
 class AddDamage(ModelForm):
     class Meta:
@@ -19,3 +19,11 @@ class EditBoat(ModelForm):
 class News(ModelForm):
     class Meta:
         model = News
+
+class Building(ModelForm):
+    class Meta:
+        model = Building
+
+class Inventory(ModelForm):
+    class Meta:
+        model = Inventory

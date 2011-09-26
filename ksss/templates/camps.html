@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block page_title %}{{ camp|capfirst }}{% endblock %}
+{% block content %}
+
+<div id="content">
+
+<h1>{{ camp.name|capfirst }}</h1>
+<aside class="news">
+    <article id="newsmenu">
+        <section>
+            <h4><a href="/{{ camp.slug }}">Nyheter</a></h4>
+                    {% for newsitem in news %}
+                        {% if newsitem.camp|lower == camp %}
+                            {% ifchanged %}
+                            <h5>{{ newsitem.posted|date:"F" }}</h5>
+                            {% endifchanged %}
+
+                            <a href="/{{ camp.slug }}/news/{{ newsitem.id }}/">{{ newsitem.title }}</a>
+                            {% if not forloop.last %}<br>{% endif %}
+                        {% endif %}
+                    {% endfor %}
+            <h4><a href="/{{ camp.slug }}/inventory/0/">Inventarier</a></h4>
+                        {% for item in inventorytype %}
+                        <a href="/{{ camp.slug }}/inventory/{{ item.id }}">{{ item.name }}</a>
+                            {% if not forloop.last %}<br>{% endif %}
+                        {% endfor %}
+            <h4>Byggnader</h4>
+            <h4><a href="/{{ camp.slug }}/boats/">Båtar</a></h4>
+            <h4>Läger</h4>
+        </section>
+    </article>
+</aside>
+
+{% block sub_content %}
+{% endblock %}
+
+{% block footer %}
+    {% block sub_footer %}
+    {% endblock %}
+{% endblock %}
+                
+{% endblock %}

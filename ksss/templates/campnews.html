@@ -1,0 +1,34 @@
+{% extends 'camps.html' %}
+
+{% block sub_content %}
+{% load markup %}
+
+{% for newsitem in news|slice:":4" %}
+    <article>
+
+        <section> 
+            <h1><a href="/news/{{ camp }}/{{ newsitem.id }}/">{{ newsitem.title }}</a></h1>
+            <p> {{ newsitem.content|markdown }}
+        </section>
+
+        <footer>
+            Posted on
+            
+            <datetime time="{{ newsitem.posted|date:"c" }}">
+
+            <span>{{ newsitem.posted|date:"c" }}</span>
+
+            </datetime>
+                <div id="author">By {{ newsitem.author }}</div>
+
+                <div id="edit_news">
+                    <a href="/home/edit/{{ newsitem.id }}" title="Ändra nyhet" class="awesome medium grey">Edit</a>
+                </div>
+        </footer>
+
+    </article>
+{% endfor %}
+
+    <a href="/home/new/" title="Ny nyhet" class="awesome medium grey">Ny nyhet</a>
+
+{% endblock %}

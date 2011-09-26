@@ -145,7 +145,7 @@ table.tablesorter {
 	background-color: #CDCDCD;
 	margin:10px 0pt 15px;
 	font-size: 8pt;
-	width: 100%;
+	width: 75%;
 	text-align: left;
 }
 table.tablesorter thead tr th, table.tablesorter tfoot tr th {
@@ -200,6 +200,11 @@ article {
     -webkit-border-radius:5px;
     border-radius:5px;
 }
+
+article a {
+    text-decoration: none;
+}
+
 
 #helpbox {
     text-align: left;
@@ -306,10 +311,9 @@ article footer span:after {
     font-size: smaller;
 }
 
-aside {
+aside.news {
     float: right;
     width: 180px;
-    right: 0px;
 }
 
 #newsmenu {

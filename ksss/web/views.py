@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render_to_response, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.template import RequestContext
 from ksss.web import models
-from ksss.web.forms import AddDamage, AddBoat, EditBoat, News
+from ksss.web.forms import AddDamage, AddBoat, EditBoat, News, Inventory
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -13,8 +13,73 @@ def base(request):
     return render_to_response('base.html') 
 
 @login_required
-def langholmen(request):
-    return render_to_response('langholmen.html')
+def camps(request, camp, current_inventorytype_id=None, building=False):
+    if current_inventorytype_id:
+        current_inventorytype = models.InventoryType.objects.get(id=current_inventorytype_id)
+    else:
+        current_inventorytype = None
+
+    if building == True:
+        building_objects = models.Buildings.objects.all()
+    else: 
+        building_objects = None
+
+    return render_to_response('camps.html', {
+        'camp': camp,
+        'inventory': models.Inventory.objects.all(),
+        'inventorytype': models.InventoryType.objects.all(),
+        'current_inventorytype': current_inventorytype,
+        'building_objects': building_objects
+    }, context_instance=RequestContext(request))
+
+@login_required
+def camp(request, camp):
+    camp = models.Camp.objects.get(slug=camp)
+    return render_to_response('campnews.html', {
+        'camp': camp,
+        'inventorytype': models.InventoryType.objects.all(),
+        'news': models.News.objects.all()
+    }, context_instance=RequestContext(request))
+
+@login_required
+def one_campnews(request, camp, news_id):
+    camp = models.Camp.objects.get(slug=camp)
+    return render_to_response('one_campnews.html', {
+        'camp': camp,
+        'inventorytype': models.InventoryType.objects.all(),
+        'news': models.News.objects.all(),
+        'current_news': models.News.objects.get(id=news_id)
+    }, context_instance=RequestContext(request))
+    
+    
+@login_required
+def inventory(request, camp, inventory_type_id):
+    camp = models.Camp.objects.get(slug=camp)
+    if inventory_type_id == str(0):
+        inventory_type = 0
+    else:
+        inventory_type = get_object_or_404(models.InventoryType, id=inventory_type_id)
+    
+
+    return render_to_response('inventory.html', {
+        'camp': camp,
+        'inventorytype': models.InventoryType.objects.all(),
+        'news': models.News.objects.all(),
+        'inventory': models.Inventory.objects.all(),
+        'current_inventorytype': inventory_type
+    }, context_instance=RequestContext(request))
+
+@login_required
+def campboats(request, camp):
+    camp = models.Camp.objects.get(slug=camp)
+    
+    return render_to_response('campboats.html', {
+        'camp': camp,
+        'inventorytype': models.InventoryType.objects.all(),
+        'news': models.News.objects.all(),
+        'Boats': models.Boat.objects.all(),
+    }, context_instance=RequestContext(request))
+    
 
 @login_required
 def home(request):
@@ -115,6 +180,40 @@ def delete(request, id, item):
     to_be_deleted.delete()
 
     return HttpResponseRedirect('/new_damage/thanks/')
+
+@login_required
+def method_splitter(request, GET=None, POST=None, id=None):
+    if request.method == 'GET' and GET is not None:
+        return GET(request, id)
+    elif request.method == 'POST' and POST is not None:
+        return POST(request, id)
+    else:
+        raise Http404()
+        
+
+@login_required
+def get_inventory(request, id):
+    if id:
+        to_edit = get_object_or_404(models.Inventory, id=id)
+        form = Inventory(instance = to_edit)
+    else:
+        form = Inventory()
+    return render_to_response('add.html', {
+        'form': form
+    }, context_instance=RequestContext(request))
+
+@login_required
+def post_inventory(request, id):
+    if id:
+        to_edit = models.Inventory.objects.get(id=id)
+        form = Inventory(request.POST, instance = to_edit)
+    else:
+        form = Inventory(request.POST)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/new_damage/thanks/')
+
+
 
 @login_required
 def damage(request, dmg_id=None):

@@ -1,0 +1,53 @@
+{% extends 'camps.html' %}
+
+{% block sub_content %}
+
+<table id="myTable" class="tablesorter">
+<thead>
+    <tr>
+        <th><b> Namn </b></th>
+        <th><b> Typ </b> </th>
+        <th><b> Hemmahamn </b> </th>
+        <th><b> Skador </b></th>
+    </tr>
+</thead>
+<tbody>
+    {% for boat in Boats %}
+        {% if boat.home_port|lower == camp %}
+
+            <tr>
+                <td><a href="/boats/{{ boat.id }}" title="Visa båt">{{ boat.name }}</a>
+                    <a href="/boats/delete/{{ boat.id }}" title="Ta bort båt"><img src="/static/img/red_x.gif"></a></td>
+                <td> {{ boat.boat_type }}</td>
+                <td> {{ boat.home_port }} </td>
+                {% if boat.reporteddamage_set.all %}
+                    <td>
+                    {% for damage in boat.reporteddamage_set.all %}
+                        {% if not damage.repaired %}
+                            <a href="/damage/edit/{{ damage.id }}" title="Redigera skada">{{ damage }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                {% endif %}
+            </tr>
+        {% endif %}
+    {% endfor %}
+</tbody>
+</table>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+</script>
+
+<a href="/boats/new/" title="Ny båt" class="awesome medium blue">Ny båt</a>
+<a href="/damage/new/" class="awesome medium blue" title="Ny skada">Ny skada</a>
+
+{% endblock %}
+{% block sub_footer %}
+<script type="text/javascript" src="/static/js/jquery.tablesorter.min.js"></script> 
+{% endblock %}
+

@@ -1,0 +1,29 @@
+{% extends 'camps.html' %}
+
+{% block sub_content %}
+{% load markup %}
+    <article>
+
+        <section> 
+            <h1>{{ current_news.title }}</h1>
+            <p> {{ current_news.content|markdown }}
+        </section>
+
+        <footer>
+            Posted on
+            
+            <datetime time="{{ current_news.posted|date:"c" }}">
+
+            <span>{{ current_news.posted|date:"c" }}</span>
+
+            </datetime>
+                <div id="author">By {{ current_news.author }}</div>
+
+                <div id="edit_news">
+                    <a href="/home/edit/{{ current_news.id }}" title="Ändra nyhet" class="awesome medium grey">Edit</a>
+                </div>
+        </footer>
+
+    </article>
+
+{% endblock %}
