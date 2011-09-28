@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block page_title %}
+Media
+{% endblock %}
+
+{% block content %}
+
+{% for media in media %}
+
+    {{ media.title }}<br>
+
+{% endfor %}
+{% endblock %}

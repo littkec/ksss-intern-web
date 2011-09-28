@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    <form action="" method="post">
+    <form action="" method="post" {% block enctype %}{% endblock %}>
     {% csrf_token %}
         <table>
             {{ form.as_table }}

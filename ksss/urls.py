@@ -2,8 +2,10 @@ from django.conf.urls.defaults import patterns, include, url
 from ksss.web import views 
 from ksss.web import models
 from django.contrib.auth.views import login, logout
-
+from django.views.static import serve
 from django.contrib import admin
+from ksss.settings import MEDIA_ROOT, MEDIA_URL
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -29,6 +31,9 @@ urlpatterns = patterns('',
     (r'^damage/edit/(\d+)/$', views.damage),
     (r'^damage/delete/(\d+)/$', views.delete, {'item': models.ReportedDamage}),
     (r'^new_damage/thanks/$', views.thanks),
+    (r'^media/upload/$', views.method_splitter_upload, {'GET':views.get_upload, 'POST':views.post_upload}),
+    (r'^media/$', views.view_media),
+    (r'^%s/(?P<path>.*)/$' % MEDIA_URL, serve, {'document_root': MEDIA_ROOT}),
     (r'^accounts/login/$', login),
     (r'^accounts/logout/$', logout),
     # Examples:

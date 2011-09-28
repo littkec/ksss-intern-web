@@ -90,3 +90,18 @@ class Inventory(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class Position(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __unicode__(self):
+        return self.name
+
+class Upload(models.Model):
+    title = models.CharField(max_length=30)
+    camp = models.ForeignKey(Camp)
+    position = models.ForeignKey(Position)
+    file = models.FileField(upload_to='.')
+
+    def __unicode__(self):
+        return self.title

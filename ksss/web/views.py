@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
 from django.template import RequestContext
 from ksss.web import models
-from ksss.web.forms import AddDamage, AddBoat, EditBoat, News, Inventory
+from ksss.web.forms import AddDamage, AddBoat, EditBoat, News, Inventory, Upload
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -244,3 +244,41 @@ def damage(request, dmg_id=None):
 @login_required
 def thanks(request):
     return render_to_response('thanks.html')
+
+@login_required
+def method_splitter_upload(request, GET=None, POST=None):
+    if request.method == 'GET' and GET is not None:
+        return GET(request)
+    elif request.method == 'POST' and POST is not None:
+        return POST(request)
+    else:
+        raise Http404()
+
+@login_required
+def get_upload(request):
+    form = Upload()
+    return render_to_response('upload.html', {
+        'form': form
+    }, context_instance=RequestContext(request))
+
+@login_required
+def post_upload(request):
+    form = Upload(request.POST, request.FILES)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/new_damage/thanks/')
+    else:
+        form = Upload()
+    return render_to_response('upload.html', {
+        'form': form
+    }, context_instance=RequestContext(request))
+
+@login_required
+def view_media(request, position=None):
+    
+    return render_to_response('media.html', {
+        'media': models.Upload.objects.all()
+    }, context_instance=RequestContext(request))
+    
+
+    

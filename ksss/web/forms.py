@@ -27,3 +27,7 @@ class Building(ModelForm):
 class Inventory(ModelForm):
     class Meta:
         model = Inventory
+
+class Upload(ModelForm):
+    class Meta:
+        model = Upload
